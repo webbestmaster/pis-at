@@ -10,13 +10,14 @@ const runType = 'test'; // test || reference
 let chain = Promise.resolve();
 
 [
-    // configPx320
-    // configPx750
+    configPx320,
+    configPx750,
     configPx1280
 ]
     .forEach(config => {
         chain = chain
             .then(() => backstop(runType, {config: makeConfig(config)}))
+            .catch(evt => console.error(evt))
             .then(() => console.log('--->', config.id, '- done'));
     });
 

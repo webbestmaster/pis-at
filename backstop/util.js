@@ -15,7 +15,9 @@ module.exports.makeConfig = config => {
         }
     });
 
-    newConfig.paths.bitmaps_reference += '_' + config.id.toLowerCase(); // eslint-disable-line camelcase, id-match
+    newConfig.paths.bitmaps_reference += '/' + config.id.toLowerCase(); // eslint-disable-line camelcase, id-match
+    newConfig.paths.bitmaps_test += '/' + config.id.toLowerCase(); // eslint-disable-line camelcase, id-match
+    newConfig.paths.html_report += '/' + config.id.toLowerCase(); // eslint-disable-line camelcase, id-match
 
     return newConfig;
 };
