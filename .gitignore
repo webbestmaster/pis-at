@@ -1,2 +1,10 @@
 # IDE
 .idea/
+
+# npm
+node_modules
+package-lock.json
+
+# AT
+/backstop/report/
+/backstop/bitmap/test/
