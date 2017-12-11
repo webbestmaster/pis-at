@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>index</h1>
+
+<button class="button-1">1</button>
+<br>
+<br>
+<button class="button-2">1</button>
+<br>
+<br>
+<button class="button-3">1</button>
+
+<style>
+    button:hover {
+        background-color: #c00;
+    }
+
+
+
+</style>
+
+<script>
+    "use strict";
+
+    const buttons = Array.prototype.slice.call(document.querySelectorAll('button'));
+
+    buttons.forEach(button => button.addEventListener('click', function onClick() {
+        this.innerHTML = Date.now();
+    }, false))
+
+</script>
+
+
+</body>
+</html>
