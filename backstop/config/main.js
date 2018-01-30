@@ -5,8 +5,8 @@ module.exports = {
     id: 'PIS-BSAT-main',
     viewports: [],
     scenarios: [
-        ...mainScenarios,
-        ...home
+        // ...mainScenarios,
+        // ...home
     ],
     onBeforeScript: 'chromy/on-before.js',
     onReadyScript: 'chromy/on-ready.js',

@@ -1,3 +1,6 @@
+//
+
+
 function hover(chromy, selector) {
     return chromy
         .wait(selector)
@@ -17,6 +20,10 @@ function wait(chromy, time) {
     chromy.wait(time);
 }
 
+function evaluate(chromy, callback) {
+    chromy.evaluate(callback);
+}
+
 function runAction(chromy, action) {
     if (action.hasOwnProperty('click')) {
         click(chromy, action.click);
@@ -29,13 +36,17 @@ function runAction(chromy, action) {
     if (action.hasOwnProperty('hover')) {
         hover(chromy, action.hover);
     }
+
+    if (action.hasOwnProperty('evaluate')) {
+        evaluate(chromy, action.evaluate);
+    }
 }
 
 module.exports = (chromy, scenario) => {
     const hoverSelector = scenario.hoverSelector;
     const clickSelector = scenario.clickSelector;
     const postInteractionWait = scenario.postInteractionWait; // selector [str] | ms [int]
-    const actions = scenario.actions; // [{click: '.button'}]
+    const actions = scenario.actions; // [{hover: '.button'}, {click: '.button'}, {wait: 5e3}, {evaluate: () => {document.activeElement.value = '11';}}]
 
     if (hoverSelector) {
         hover(chromy, hoverSelector);
