@@ -1,0 +1,14 @@
+[
+  {
+    "domain": "site.katran.by",
+    "path": "/",
+    "name": "SID",
+    "value": "0ToTYqN2RY0gw9xYtyIYWYLuexnVAs15fmPFWv7A",
+    "expirationDate": 1798790400,
+    "hostOnly": true,
+    "httpOnly": false,
+    "secure": false,
+    "session": false,
+    "sameSite": ""
+  }
+]

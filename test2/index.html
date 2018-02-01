@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+
+<style>
+    body {
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 14px;
+        color: #212121;
+    }
+
+    #input-wrapper,
+    #just-node,
+    #red-on-hover,
+    #green-on-click {
+        width: 200px;
+        text-align: center;
+        padding: 10px;
+        background-color: #ccc;
+        margin-bottom: 20px;
+    }
+
+    #red-on-hover:hover {
+        background-color: #cc0000;
+    }
+
+</style>
+
+<div id="just-node">just node</div>
+
+<div id="red-on-hover">
+    red on hover
+</div>
+
+<script>
+    function makeGreen(node) {
+        node.style.backgroundColor='#0c0';
+    }
+</script>
+
+<div id="green-on-click" onclick="makeGreen(this)">
+    green on click
+</div>
+
+<div id="input-wrapper">
+    <input id="input" type="text">
+</div>
+
+
+
+</body>
+</html>
