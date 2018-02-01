@@ -30,61 +30,56 @@ module.exports = {
             selectors: [
                 '#just-node'
             ]
+        },
+        {
+            label: 'red-on-hover',
+            url: appConfig.origin,
+            actions: [
+                {wait: 1e3},
+                {hover: '#red-on-hover'}
+            ],
+            selectors: [
+                '#red-on-hover'
+            ]
+        },
+        {
+            label: 'green-on-click',
+            url: appConfig.origin,
+            actions: [
+                {wait: 1e3},
+                {click: '#green-on-click'}
+            ],
+            selectors: [
+                '#green-on-click'
+            ]
+        },
+
+        {
+            label: 'not-exists',
+            url: appConfig.origin,
+            selectors: [
+                '#not-exists'
+            ]
+        },
+        {
+            label: 'evaluate',
+            url: appConfig.origin,
+            actions: [
+                {wait: 1e3},
+                {
+                    evaluate: function hide() {
+                        window.document.getElementById('input').style.backgroundColor = '#0c0';
+                    }
+                },
+                {wait: 1e3}
+            ],
+            selectors: [
+                '#input-wrapper'
+            ]
         }
-        /*
-                {
-                    label: 'red-on-hover',
-                    url: appConfig.origin,
-                    actions: [
-                        {wait: 1e3},
-                        {hover: '#red-on-hover'}
-                    ],
-                    selectors: [
-                        '#red-on-hover'
-                    ]
-                },
-                {
-                    label: 'green-on-click',
-                    url: appConfig.origin,
-                    actions: [
-                        {wait: 1e3},
-                        {click: '#green-on-click'}
-                    ],
-                    selectors: [
-                        '#green-on-click'
-                    ]
-                },
-                {
-                    label: 'not-exists',
-                    url: appConfig.origin,
-                    selectors: [
-                        '#not-exists'
-                    ]
-                },
-                {
-                    label: 'evaluate',
-                    url: appConfig.origin,
-                    actions: [
-                        {wait: 1e3},
-                        {
-                            sendKeys: 'the entered text',
-                            selector: '#input'
-                        },
-                        {
-                            evaluate: function hide() {
-                                window.document.getElementById('input').style.backgroundColor = '#0c0';
-                            }.toString()
-                        },
-                        {wait: 1e3}
-                    ],
-                    selectors: [
-                        '#input-wrapper'
-                    ]
-                }
-        */
     ],
-    // onBeforeScript: 'chromy/on-before.js',
-    // onReadyScript: 'chromy/on-ready.js',
+    onBeforeScript: 'chromy/on-before.js',
+    onReadyScript: 'chromy/on-ready.js',
     paths: {
         bitmaps_reference: 'bitmap/reference/' + configName, // eslint-disable-line camelcase, id-match
         bitmaps_test: 'bitmap/test/' + configName, // eslint-disable-line camelcase, id-match
@@ -92,9 +87,10 @@ module.exports = {
         ci_report: 'report/ci/' + configName, // eslint-disable-line camelcase, id-match
         engine_scripts: 'engine-scripts' // eslint-disable-line camelcase, id-match
     },
-    casperFlags: [],
-    chromeFlags: ["--force-device-scale-factor=1", "--disable-infobars=true"],
-    waitTimeout: 5000,
+    engineOptions: {
+        waitTimeout: 120000,
+        chromeFlags: ['--force-device-scale-factor=1']
+    },
     engine: 'chromy',
     report: [
         'browser'

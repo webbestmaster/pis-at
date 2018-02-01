@@ -1,56 +1,66 @@
-function hover(casper, selector) {
-    return casper.mouse.move(selector);
+//
+
+
+function hover(chromy, selector) {
+    return chromy
+        .wait(selector)
+        .rect(selector)
+        .result(rect => {
+            chromy.mouseMoved(rect.left + Math.round(rect.width / 2), rect.top + Math.round(rect.height / 2));
+        });
 }
 
-function click(casper, selector) {
-    return casper.mouse.click(selector);
+function click(chromy, selector) {
+    return chromy
+        .wait(selector)
+        .click(selector);
 }
 
-function wait(casper, time) {
-    return casper.wait(time);
+function wait(chromy, time) {
+    chromy.wait(time);
 }
 
-function sendKeys(casper, selector, keys) {
-    return casper.sendKeys(selector, keys);
+function evaluate(chromy, callback) {
+    chromy.evaluate(callback);
 }
 
-function evaluate(casper, callback) {
-    return casper.evaluate(callback);
-}
-
-function runAction(casper, action) { // eslint-disable-line complexity
+function runAction(chromy, action) {
     if (action.hasOwnProperty('click')) {
-        click(casper, action.click);
+        click(chromy, action.click);
     }
 
     if (action.hasOwnProperty('wait')) {
-        wait(casper, action.wait);
+        wait(chromy, action.wait);
     }
 
     if (action.hasOwnProperty('hover')) {
-        hover(casper, action.hover);
+        hover(chromy, action.hover);
     }
 
     if (action.hasOwnProperty('evaluate')) {
-        evaluate(casper, action.evaluate);
-    }
-
-    if (action.hasOwnProperty('sendKeys')) {
-        sendKeys(casper, action.selector, action.sendKeys);
+        evaluate(chromy, action.evaluate);
     }
 }
 
-module.exports = function actionHelper(casper, scenario) {
-    const actions = scenario.actions || [];
-    // [
-    // {hover: '.button'},
-    // {click: '.button'},
-    // {wait: 5e3},
-    // {evaluate: () => {document.activeElement.value = 'eny value';}.toString()},
-    // {sendKeys: 'some text', selector: '.input'}
-    // ]
+module.exports = (chromy, scenario) => {
+    const hoverSelector = scenario.hoverSelector;
+    const clickSelector = scenario.clickSelector;
+    const postInteractionWait = scenario.postInteractionWait; // selector [str] | ms [int]
+    const actions = scenario.actions; // [{hover: '.button'}, {click: '.button'}, {wait: 5e3}, {evaluate: () => {document.activeElement.value = '11';}}]
 
-    actions.forEach(function forEachActionCallback(action) {
-        runAction(casper, action);
-    });
+    if (hoverSelector) {
+        hover(chromy, hoverSelector);
+    }
+
+    if (clickSelector) {
+        click(chromy, clickSelector);
+    }
+
+    if (actions) {
+        actions.forEach(action => runAction(chromy, action));
+    }
+
+    if (postInteractionWait) {
+        wait(chromy, postInteractionWait);
+    }
 };
