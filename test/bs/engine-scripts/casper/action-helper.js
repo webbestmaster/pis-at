@@ -10,11 +10,15 @@ function wait(casper, time) {
     return casper.wait(time);
 }
 
-// function evaluate(casper, callback) {
-//     return casper.evaluate(callback);
-// }
+function sendKeys(casper, selector, keys) {
+    return casper.sendKeys(selector, keys);
+}
 
-function runAction(casper, action) {
+function evaluate(casper, callback) {
+    return casper.evaluate(callback);
+}
+
+function runAction(casper, action) { // eslint-disable-line complexity
     if (action.hasOwnProperty('click')) {
         click(casper, action.click);
     }
@@ -27,17 +31,26 @@ function runAction(casper, action) {
         hover(casper, action.hover);
     }
 
-    // if (action.hasOwnProperty('evaluate')) {
-    //     evaluate(casper, action.evaluate);
-    // }
+    if (action.hasOwnProperty('evaluate')) {
+        evaluate(casper, action.evaluate);
+    }
+
+    if (action.hasOwnProperty('sendKeys')) {
+        sendKeys(casper, action.selector, action.sendKeys);
+    }
 }
 
 module.exports = function actionHelper(casper, scenario) {
     const actions = scenario.actions || [];
-    // [{hover: '.button'}, {click: '.button'}, {wait: 5e3}, {evaluate: () => {document.activeElement.value = '11';}}]
+    // [
+    // {hover: '.button'},
+    // {click: '.button'},
+    // {wait: 5e3},
+    // {evaluate: () => {document.activeElement.value = 'eny value';}.toString()},
+    // {sendKeys: 'some text', selector: '.input'}
+    // ]
 
     actions.forEach(function forEachActionCallback(action) {
         runAction(casper, action);
     });
-}
-;
+};

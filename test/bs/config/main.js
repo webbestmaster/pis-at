@@ -1,3 +1,4 @@
+/*  global window */
 const configName = 'main';
 const appConfig = require('./../app.json');
 
@@ -5,12 +6,12 @@ module.exports = {
     id: configName,
     viewports: [
         {
-            name: 'name-1280x768',
+            name: 'name-1280x0768',
             width: 1280,
             height: 768
         },
         {
-            name: 'name-320x480',
+            name: 'name-0320x0480',
             width: 320,
             height: 480
         }
@@ -58,18 +59,20 @@ module.exports = {
             selectors: [
                 '#not-exists'
             ]
-        }
-
-        /*
+        },
         {
             label: 'evaluate',
             url: appConfig.origin,
             actions: [
-                // {wait: 1e3},
+                {wait: 1e3},
                 {
-                    evaluate: () => {
-                        return window.document.getElementById('input').style.display = 'none';
-                    }
+                    sendKeys: 'the entered text',
+                    selector: '#input'
+                },
+                {
+                    evaluate: function hide() {
+                        window.document.getElementById('input').style.backgroundColor = '#0c0';
+                    }.toString()
                 },
                 {wait: 1e3}
             ],
@@ -77,7 +80,6 @@ module.exports = {
                 '#input-wrapper'
             ]
         }
-*/
     ],
     onBeforeScript: 'casper/on-before.js',
     onReadyScript: 'casper/on-ready.js',
