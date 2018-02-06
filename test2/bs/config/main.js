@@ -5,11 +5,14 @@ const appConfig = require('./../app.json');
 module.exports = {
     id: configName,
     viewports: [
+
+        /*
         {
             name: 'name-1280x0768',
             width: 1280,
             height: 768
         },
+*/
         {
             name: 'name-0320x0480',
             width: 320,
@@ -17,6 +20,8 @@ module.exports = {
         }
     ],
     scenarios: [
+
+        /*
         {
             label: 'body',
             url: appConfig.origin,
@@ -24,6 +29,8 @@ module.exports = {
                 'body'
             ]
         },
+*/
+        /*
         {
             label: 'just-node',
             url: appConfig.origin,
@@ -31,6 +38,8 @@ module.exports = {
                 '#just-node'
             ]
         },
+*/
+        /*
         {
             label: 'red-on-hover',
             url: appConfig.origin,
@@ -42,6 +51,8 @@ module.exports = {
                 '#red-on-hover'
             ]
         },
+*/
+        /*
         {
             label: 'green-on-click',
             url: appConfig.origin,
@@ -53,7 +64,8 @@ module.exports = {
                 '#green-on-click'
             ]
         },
-
+*/
+        /*
         {
             label: 'not-exists',
             url: appConfig.origin,
@@ -61,6 +73,8 @@ module.exports = {
                 '#not-exists'
             ]
         },
+*/
+        /*
         {
             label: 'evaluate',
             url: appConfig.origin,
@@ -76,7 +90,21 @@ module.exports = {
             selectors: [
                 '#input-wrapper'
             ]
+        },
+*/
+        /*
+        {
+            label: 'cookies',
+            url: 'http://localhost:8181/#/user',
+            cookies: './config/cookies.json',
+            actions: [
+                {wait: 1e3}
+            ],
+            selectors: [
+                '.top-big-banner'
+            ]
         }
+*/
     ],
     onBeforeScript: 'chromy/on-before.js',
     onReadyScript: 'chromy/on-ready.js',

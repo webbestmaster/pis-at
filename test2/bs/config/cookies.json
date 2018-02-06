@@ -1,12 +1,12 @@
 [
   {
-    "domain": "site.katran.by",
+    "url": "http://site.katran.by",
     "path": "/",
     "name": "SID",
-    "value": "0ToTYqN2RY0gw9xYtyIYWYLuexnVAs15fmPFWv7A",
-    "expirationDate": 1798790400,
-    "hostOnly": true,
-    "httpOnly": false,
+    "value": "lTJaHxRCKyh9GY0abl34HM6PD15OfWEArYTt9OHB",
+    "expirationDate": "2018-02-06T18:38:44.098Z",
+    "hostOnly": false,
+    "httpOnly": true,
     "secure": false,
     "session": false,
     "sameSite": ""
