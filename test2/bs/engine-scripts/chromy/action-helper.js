@@ -1,6 +1,3 @@
-//
-
-
 function hover(chromy, selector) {
     return chromy
         .wait(selector)
@@ -10,6 +7,10 @@ function hover(chromy, selector) {
         });
 }
 
+function insert(chromy, selector, text) {
+    return chromy.insert(selector, text);
+}
+
 function click(chromy, selector) {
     return chromy
         .wait(selector)
@@ -17,14 +18,14 @@ function click(chromy, selector) {
 }
 
 function wait(chromy, time) {
-    chromy.wait(time);
+    return chromy.wait(time);
 }
 
 function evaluate(chromy, callback) {
-    chromy.evaluate(callback);
+    return chromy.evaluate(callback);
 }
 
-function runAction(chromy, action) {
+function runAction(chromy, action) { // eslint-disable-line complexity
     if (action.hasOwnProperty('click')) {
         click(chromy, action.click);
     }
@@ -37,16 +38,17 @@ function runAction(chromy, action) {
         hover(chromy, action.hover);
     }
 
+    if (action.hasOwnProperty('insert')) {
+        insert(chromy, action.insert, action.text);
+    }
+
     if (action.hasOwnProperty('evaluate')) {
         evaluate(chromy, action.evaluate);
     }
 }
 
 module.exports = (chromy, scenario) => {
-    const hoverSelector = scenario.hoverSelector;
-    const clickSelector = scenario.clickSelector;
-    const postInteractionWait = scenario.postInteractionWait; // selector [str] | ms [int]
-    const actions = scenario.actions; // [{hover: '.button'}, {click: '.button'}, {wait: 5e3}, {evaluate: () => {document.activeElement.value = '11';}}]
+    const {hoverSelector, clickSelector, actions, postInteractionWait} = scenario;
 
     if (hoverSelector) {
         hover(chromy, hoverSelector);

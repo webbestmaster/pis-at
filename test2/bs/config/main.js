@@ -105,6 +105,18 @@ module.exports = {
             ]
         }
 */
+        /*
+        {
+            label: 'send-keys',
+            url: appConfig.origin,
+            actions: [
+                {insert: '#input', text: 'the insert text'}
+            ],
+            selectors: [
+                '#input-wrapper'
+            ]
+        }
+*/
     ],
     onBeforeScript: 'chromy/on-before.js',
     onReadyScript: 'chromy/on-ready.js',
