@@ -1,0 +1,13 @@
+{
+    "url": {
+        "host": "http://localhost:8181/#",
+        "home": "/",
+        "clubs": "/clubs",
+        "club": "/club/1",
+        "subscriptions": "/subscriptions",
+        "subscription": "/subscription/1",
+        "trainings": "/trainings",
+        "training": "/training/1",
+        "order": "/order/subscription/1"
+    }
+}

@@ -1,45 +1,31 @@
 /*  global window */
 const configName = 'main';
-const appConfig = require('./app-const.json');
+const appConfig = require('./../app.json');
 
 module.exports = {
     id: configName,
     viewports: [
+
+        /*
         {
-            name: 'v-1280x_768',
+            name: 'name-1280x0768',
             width: 1280,
             height: 768
         },
+*/
         {
-            name: 'v-_752x_600',
-            width: 752,
-            height: 600
-        },
-        {
-            name: 'v-_320x_480',
+            name: 'name-0320x0480',
             width: 320,
             height: 480
         }
     ],
     scenarios: [
-        {
-            label: 'home',
-            url: appConfig.url.host + appConfig.url.home,
-            delay: 2e3,
-            selectors: [
-                '.header',
-                '.section.sale',
-                '.section.promo-steps',
-                '.section.our-partners',
-                '.promo-instagram',
-                '.footer',
-            ]
-        }
 
         /*
         {
             label: 'body',
             url: appConfig.origin,
+            delay: 2e3,
             selectors: [
                 'body'
             ]

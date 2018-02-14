@@ -1,25 +1,23 @@
 const backstop = require('backstopjs');
-// const configPx320 = require('./config/px-320');
-// const configPx750 = require('./config/px-760');
-const configPx1280 = require('./config/px-1280/index.js');
-const {makeConfig} = require('./util');
+const mainConfig = require('./config/main');
 
-const runType = 'reference'; // test || reference
+const runType = process.env.RUN_TYPE; // test || reference
 // const runType = 'test'; // test || reference
+
+if (!runType) {
+    console.error('You must specify RUN_TYPE (test || reference)');
+    return;
+}
 
 let chain = Promise.resolve();
 
 [
-    // configPx320,
-    // configPx750,
-    configPx1280
+    mainConfig
 ]
     .forEach(config => {
         chain = chain
             .then(() => {
-                console.log(JSON.stringify(makeConfig(config), 10));
-
-                return backstop(runType, {config: makeConfig(config)});
+                return backstop(runType, {config});
             })
             .catch(evt => console.error(evt))
             .then(() => console.log('--->', config.id, '- done'));
