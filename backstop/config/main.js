@@ -125,6 +125,7 @@ module.exports = {
         }
 */
     ],
+    asyncCaptureLimit: 1,
     onBeforeScript: 'chromy/on-before.js',
     onReadyScript: 'chromy/on-ready.js',
     paths: {
@@ -135,7 +136,7 @@ module.exports = {
         engine_scripts: 'engine-scripts' // eslint-disable-line camelcase, id-match
     },
     engineOptions: {
-        waitTimeout: 120000,
+        waitTimeout: 5e3,
         chromeFlags: ['--force-device-scale-factor=1']
     },
     engine: 'chromy',
