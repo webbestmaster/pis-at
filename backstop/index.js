@@ -3,6 +3,7 @@ const mainConfig = require('./config/main');
 
 // runType:string = test | reference
 const runType = process.env.RUN_TYPE; // eslint-disable-line no-process-env, no-undef
+const filter = process.env.FILTER || ''; // eslint-disable-line no-process-env, no-undef
 // const runType = 'test'; // test || reference
 
 if (!runType) {
@@ -18,6 +19,11 @@ let chain = Promise.resolve();
     .forEach(config => {
         chain = chain
             .then(() => {
+                Object.assign(
+                    config,
+                    {scenarios: config.scenarios.filter(({label}) => label.includes(filter))}
+                );
+
                 return backstop(runType, {config});
             })
             .catch(evt => console.error(evt))
