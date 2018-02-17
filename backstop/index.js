@@ -1,7 +1,8 @@
 const backstop = require('backstopjs');
 const mainConfig = require('./config/main');
 
-const runType = process.env.RUN_TYPE; // test || reference
+// runType:string = test | reference
+const runType = process.env.RUN_TYPE; // eslint-disable-line no-process-env, no-undef
 // const runType = 'test'; // test || reference
 
 if (!runType) {
