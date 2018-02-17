@@ -22,75 +22,9 @@ module.exports = {
         }
     ],
     scenarios: [
-        {
-            label: 'home',
-            url: appConfig.url.host + appConfig.url.home,
-            delay: 1e3,
-            selectors: [
-                '.header',
-                '.section.sale',
-                '.section.promo-steps',
-                '.section.our-partners',
-                '.promo-instagram',
-                '.footer'
-            ]
-        },
-        {
-            label: 'home--open-mobile-menu',
-            url: appConfig.url.host + appConfig.url.home,
-            delay: 1e3,
-            clickSelector: '.header-mobile-menu__menu-button',
-            selectors: [
-                '.header',
-                '.section.sale',
-                '.section.promo-steps',
-                '.section.our-partners',
-                '.promo-instagram',
-                '.footer'
-            ]
-        },
-        {
-            label: 'club-catalog',
-            url: appConfig.url.host + appConfig.url.clubs,
-            delay: 1e3,
-            selectors: [
-                '.header-menu-simple-wrapper',
-                '.top-big-banner',
-                '.clubs-catalog-sort',
-                '.clubs-catalog-filter',
-                '.clubs-catalog-search',
-                '.clubs-catalog-list-item'
-            ]
-        },
-        {
-            label: 'club-catalog--open-mobile-menu',
-            url: appConfig.url.host + appConfig.url.clubs,
-            delay: 1e3,
-            clickSelector: '.header-mobile-menu__menu-button',
-            selectors: [
-                '.header-menu-simple-wrapper',
-                '.top-big-banner',
-                '.clubs-catalog-sort',
-                '.clubs-catalog-filter',
-                '.clubs-catalog-search',
-                '.clubs-catalog-list-item'
-            ]
-        },
-        {
-            label: 'club-catalog--open-mobile-filter',
-            url: appConfig.url.host + appConfig.url.clubs,
-            delay: 1e3,
-            clickSelector: '.clubs-catalog-sort__open-filter',
-            selectors: [
-                '.header-menu-simple-wrapper',
-                '.top-big-banner',
-                '.clubs-catalog-sort',
-                '.clubs-catalog-filter',
-                '.clubs-catalog-search',
-                '.clubs-catalog-list-item'
-            ]
-        }
-
+        ...require('./page/home').scenarios,
+        ...require('./page/clubs-catalog').scenarios,
+        ...require('./page/subscriptions-catalog').scenarios
 
         /*
         {
