@@ -1,6 +1,6 @@
 function hover(chromy, selector) {
     return chromy
-        .wait(selector)
+        // .wait(selector, defaultWait)
         .rect(selector)
         .result(rect => {
             chromy.mouseMoved(rect.left + Math.round(rect.width / 2), rect.top + Math.round(rect.height / 2));
@@ -13,7 +13,7 @@ function insert(chromy, selector, text) {
 
 function click(chromy, selector) {
     return chromy
-        .wait(selector)
+        // .wait(selector)
         .click(selector);
 }
 
