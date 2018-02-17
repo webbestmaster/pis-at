@@ -25,7 +25,8 @@ module.exports = {
         ...require('./page/home').scenarios,
         ...require('./page/clubs-catalog').scenarios,
         ...require('./page/subscriptions-catalog').scenarios,
-        ...require('./page/trainings-catalog').scenarios
+        ...require('./page/trainings-catalog').scenarios,
+        ...require('./page/club').scenarios
 
         /*
         {

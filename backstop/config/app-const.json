@@ -3,11 +3,12 @@
         "host": "http://localhost:8181/#",
         "home": "/",
         "clubs": "/clubs",
-        "club": "/club/1",
+        "club": "/club",
         "subscriptions": "/subscriptions",
-        "subscription": "/subscription/1",
+        "subscription": "/subscription",
         "trainings": "/trainings",
-        "training": "/training/1",
-        "order": "/order/subscription/1"
+        "training": "/training",
+        "orderSubscription": "/order/subscription",
+        "orderTraining": "/order/training"
     }
 }
