@@ -13,6 +13,33 @@ if (!runType) {
 
 let chain = Promise.resolve();
 
+const {viewports} = mainConfig;
+
+viewports
+    .forEach((viewport, ii) => {
+        if (ii !== 0) {
+            return;
+        }
+
+        chain = chain
+            .then(() => {
+                const newConfig = JSON.parse(JSON.stringify(mainConfig));
+
+                newConfig.id = mainConfig.id + '-' + viewport.name;
+                newConfig.viewports = [viewport];
+
+                ['bitmaps_reference', 'bitmaps_test', 'html_report', 'ci_report']
+                    .forEach(pathName => Object
+                        .assign(newConfig.paths, {[pathName]: newConfig.paths[pathName] + '-' + viewport.name}));
+
+                return backstop(runType, {config: newConfig});
+            })
+            .catch(evt => console.error(evt))
+            .then(() => console.log('--->', viewport.name, '- done'));
+    });
+
+
+/*
 [
     mainConfig
 ]
@@ -29,5 +56,6 @@ let chain = Promise.resolve();
             .catch(evt => console.error(evt))
             .then(() => console.log('--->', config.id, '- done'));
     });
+*/
 
 chain.then(() => console.log('BackStopJS => done'));

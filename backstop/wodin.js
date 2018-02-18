@@ -1,8 +1,8 @@
-var Woden = require( 'woden' ),
-    woden = new Woden({}),
-    DS = {};
+const Woden = require('woden');
+const woden = new Woden({});
+// const DS = {};
 
-woden.when( /katran/, {
+woden.when(/katran/, {
     // getKey: function( path, query ) { // allows you to generate keys
     //     return 'foo:' + path;
     // },
@@ -53,4 +53,4 @@ woden.store({ // custom storeAdapter
 });
 */
 
-woden.listen( 9000 ); // listen on port
+woden.listen(9000); // listen on port

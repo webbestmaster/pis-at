@@ -125,7 +125,7 @@ module.exports = {
         }
 */
     ],
-    asyncCaptureLimit: 1,
+    // asyncCaptureLimit: 1,
     onBeforeScript: 'chromy/on-before.js',
     onReadyScript: 'chromy/on-ready.js',
     paths: {
