@@ -11,8 +11,5 @@
   "license": "MIT",
   "devDependencies": {
     "backstopjs": "^3.1.17"
-  },
-  "dependencies": {
-    "woden": "^3.2.0"
   }
 }
