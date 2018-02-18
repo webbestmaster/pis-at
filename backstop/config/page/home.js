@@ -21,6 +21,7 @@ const scenarios = [
         clickSelector: '.header-mobile-menu__menu-button',
         selectors: [
             '.header',
+            '.header-mobile-menu',
             '.section.sale',
             '.section.promo-steps',
             '.section.our-partners',

@@ -30,7 +30,9 @@ viewports
 
                 ['bitmaps_reference', 'bitmaps_test', 'html_report', 'ci_report']
                     .forEach(pathName => Object
-                        .assign(newConfig.paths, {[pathName]: newConfig.paths[pathName] + '-' + viewport.name}));
+                        .assign(newConfig.paths, {[pathName]: newConfig.paths[pathName] + '/' + viewport.name}));
+
+                newConfig.scenarios.forEach(scenario => Object.assign(scenario, {cookies: './config/cookies.json'}));
 
                 return backstop(runType, {config: newConfig});
             })

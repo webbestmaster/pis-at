@@ -22,11 +22,14 @@ module.exports = {
         }
     ],
     scenarios: [
-        ...require('./page/home').scenarios,
-        ...require('./page/clubs-catalog').scenarios,
-        ...require('./page/subscriptions-catalog').scenarios,
-        ...require('./page/trainings-catalog').scenarios,
-        ...require('./page/club').scenarios
+        // ...require('./page/home').scenarios,
+        // ...require('./page/clubs-catalog').scenarios,
+        // ...require('./page/subscriptions-catalog').scenarios,
+        // ...require('./page/trainings-catalog').scenarios,
+        // ...require('./page/club').scenarios
+        // ...require('./page/subscription').scenarios,
+        // ...require('./page/training').scenarios
+
 
         /*
         {
@@ -125,7 +128,7 @@ module.exports = {
         }
 */
     ],
-    // asyncCaptureLimit: 1,
+    asyncCaptureLimit: 1,
     onBeforeScript: 'chromy/on-before.js',
     onReadyScript: 'chromy/on-ready.js',
     paths: {
