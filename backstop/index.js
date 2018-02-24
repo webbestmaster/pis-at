@@ -1,5 +1,6 @@
 const backstop = require('backstopjs');
 const mainConfig = require('./config/main');
+const w1280config = require('./config/w-1280');
 
 // runType:string = test | reference
 const runType = process.env.RUN_TYPE; // eslint-disable-line no-process-env, no-undef
@@ -13,51 +14,14 @@ if (!runType) {
 
 let chain = Promise.resolve();
 
-const {viewports} = mainConfig;
-
-viewports
-    .forEach((viewport, ii) => {
-        if (ii !== 0) {
-            return;
-        }
-
-        chain = chain
-            .then(() => {
-                const newConfig = JSON.parse(JSON.stringify(mainConfig));
-
-                newConfig.id = mainConfig.id + '-' + viewport.name;
-                newConfig.viewports = [viewport];
-
-                ['bitmaps_reference', 'bitmaps_test', 'html_report', 'ci_report']
-                    .forEach(pathName => Object
-                        .assign(newConfig.paths, {[pathName]: newConfig.paths[pathName] + '/' + viewport.name}));
-
-                newConfig.scenarios.forEach(scenario => Object.assign(scenario, {cookies: './config/cookies.json'}));
-
-                return backstop(runType, {config: newConfig});
-            })
-            .catch(evt => console.error(evt))
-            .then(() => console.log('--->', viewport.name, '- done'));
-    });
-
-
-/*
 [
-    mainConfig
+    w1280config
 ]
     .forEach(config => {
         chain = chain
-            .then(() => {
-                Object.assign(
-                    config,
-                    {scenarios: config.scenarios.filter(({label}) => label.includes(filter))}
-                );
-
-                return backstop(runType, {config});
-            })
+            .then(() => backstop(runType, {config}))
             .catch(evt => console.error(evt))
-            .then(() => console.log('--->', config.id, '- done'));
+            .then(() => console.log('--->', config.name, '- done'));
     });
-*/
 
 chain.then(() => console.log('BackStopJS => done'));
