@@ -21,7 +21,7 @@ let chain = Promise.resolve();
         chain = chain
             .then(() => backstop(runType, {config}))
             .catch(evt => console.error(evt))
-            .then(() => console.log('--->', config.name, '- done'));
+            .then(() => console.log('--->', config.id, '- done'));
     });
 
 chain.then(() => console.log('BackStopJS => done'));
